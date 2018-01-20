@@ -13,6 +13,7 @@ public class Main {
 		try{
 			path=new File("").getCanonicalPath()+"/code/";
 			System.out.println(path);
+			//fsdf
 		}catch(IOException e){
 		}	
 		ExecutorService service=Executors.newCachedThreadPool();		
