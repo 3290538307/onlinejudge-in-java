@@ -30,8 +30,11 @@ public class ExecutorThread implements Runnable{
 		SubmitCodeDao submitCodeDao=new SubmitCodeDao();
 		TestDataDao dao=new TestDataDao();
 		String file=null;
+		
 		if(submit_language==3) {
-			file="Temp.java";
+			code=code.replace("Temp", "Temp"+subId);
+			System.out.println(code);
+			file="Temp"+subId+".java";
 		}else {
 			file=subId+ends[submit_language-1];
 		}
@@ -56,7 +59,11 @@ public class ExecutorThread implements Runnable{
 		JedisPoolUtils.returnResource(JedisPoolUtils.getPool(), jedis);
 		File file2=new File(path+file);
 		file2.delete();
-		file2=new File(path+subId);
+		if(submit_language==3){
+			file2=new File(path+"Temp"+subId+".class");
+		}else{
+			file2=new File(path+subId);
+		}
 		file2.delete();
 		try {
 			conn.close();
