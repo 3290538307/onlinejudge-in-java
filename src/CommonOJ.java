@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -14,7 +13,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 public class CommonOJ implements OJ{
-	private String file;//保存代码的文件
 	private int result;
 	private long deltaTime;
 	private String errorMsg;
@@ -47,10 +45,10 @@ public class CommonOJ implements OJ{
 			processName=subId;
 			break;
 		case 3:
-			compile="javac "+path+"Temp.java";
-			execute="java -classpath "+path+" Temp";
+			compile="javac "+path+"Temp"+subId+".java";
+			execute="java -classpath "+path+" Temp"+subId;
 			baseMemory=13900;
-			processName="Temp";
+			processName="Temp"+subId;
 			break;
 		case 4:  //python
 			compile=null;
@@ -75,7 +73,7 @@ public class CommonOJ implements OJ{
 		}
 	}
 	public void setLanguage(int language){
-		file=files.get(language);
+		files.get(language);
 	}
 
 	public int getResult(){
@@ -102,7 +100,7 @@ public class CommonOJ implements OJ{
 			if(compile!=null){
 				process=Runtime.getRuntime().exec(compile);
 				try {
-					boolean res=process.waitFor(2000,TimeUnit.MILLISECONDS);                                  
+					boolean res=process.waitFor(20000,TimeUnit.MILLISECONDS);                                  
 					if(!res) {
 						process.destroy();
 						errorMsg="编译超时";
