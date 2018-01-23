@@ -33,7 +33,6 @@ public class ExecutorThread implements Runnable{
 		
 		if(submit_language==3) {
 			code=code.replace("Temp", "Temp"+subId);
-			System.out.println(code);
 			file="Temp"+subId+".java";
 		}else {
 			file=subId+ends[submit_language-1];
